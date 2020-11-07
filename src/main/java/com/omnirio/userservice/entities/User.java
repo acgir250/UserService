@@ -32,7 +32,7 @@ public class User extends RepresentationModel {
 	@Column(name = "gender", nullable = false, length = 2)
 	private String gender;
 
-	@Column(name = "phone", nullable = false)
+	@Column(name = "phone")
 	private String phoneNumber;
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")

@@ -43,7 +43,7 @@ public class UserService {
 	}
 
 	public User getUserByName(String name) throws Exception {
-		return null;
+		return userRepo.findByUserName(name);
 	}
 
 	public List<User> getUserByGender(String gender) throws Exception {

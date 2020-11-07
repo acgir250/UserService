@@ -1,0 +1,41 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:customer
+    username: admin
+    password: admin
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /console
+  application:
+    name: user-service
+
+server:
+  port: 0
+roles:
+  customer: Customer
+  branchManager: Branch Manager
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 20
+  client:
+    service-url:
+      defaultZone: http://localhost:8181/eureka/
+---
+spring:
+  profiles: heroku
+eureka:
+  instance:
+    hostname: ${DOMAIN_NAME}
+    nonSecurePort: 80
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL}/eureka/
+    register-with-eureka: true
+    fetch-registry: true  

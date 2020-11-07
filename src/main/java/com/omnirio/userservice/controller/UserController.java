@@ -16,7 +16,6 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.hateoas.Link;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +28,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.omnirio.userservice.entities.User;
-import com.omnirio.userservice.repositories.UserRepository;
 import com.omnirio.userservice.service.UserService;
 
 @RestController
@@ -39,8 +37,6 @@ public class UserController {
 	@Autowired
 	UserService service;
 
-	@Autowired
-	UserRepository repo;
 	
 	@SuppressWarnings("unchecked")
 	@PostMapping("/users")
@@ -62,6 +58,13 @@ public class UserController {
 				.orElse(ResponseEntity.badRequest().body("Unable to update " + user));
 
 	}
+	
+	@GetMapping("/users/{name}/username")
+	public ResponseEntity<?> getUserByName(@PathVariable("name")String name) throws Exception
+	{
+		return ResponseEntity.ok(service.getUserByName(name));
+	}
+	
 
 	@PutMapping("/users/{id}")
 	public ResponseEntity<?> updateUser(@RequestBody User user, @PathVariable("id") long id) throws Exception {
@@ -104,7 +107,7 @@ public class UserController {
 	@DeleteMapping("/users/{id}")
 	public ResponseEntity<?> deleteUser(@PathVariable("id") long id) throws Exception {
 		service.delete(id);
-		return null;
+		return ResponseEntity.accepted().build();
 	}
 
 	private List<Link> getAllLinks(long id) {
