@@ -39,6 +39,17 @@ public class User extends RepresentationModel {
 	@JsonIgnore
 	private Role role;
 
+	@Column(name = "password", nullable = false)
+	private String password;
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public Role getRole() {
 		return role;
 	}

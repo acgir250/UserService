@@ -27,6 +27,11 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8181/eureka/
+      
+jwt:
+  secret: "Thisisnotasmallkeybutabunchofkeyswithvaluesalsodsfdfeafagfgfgfdaeriofhoaerhfaerhguarpaurghargfougfuaehgaogohgahfahgahugfaogfoahgaeogfoghoshgfadiwyeftaeiftaewytrqiertaeieqwrtqirtiqtiqtiqtiqttiqtrqitqitrtqitrqirtqirtqtiqtiqtiqtqitqtqitqtitqtiqtqtiqtqtittrtrrteteettretretterrttertt6q6464hahfhfhfdk9834747474374374374343643474784743743743743743784743743794397437439434397439743743hfbhdcbcncnkcklskjahjahdhdidijdhjdfhgfdgfhufhfhfgergeioweopklwmmwsmxnxbccgyyreieoppowoqwkowiuwehuyyreute7y390owelkkjsddsgdg"      
+      
+      
 ---
 spring:
   profiles: heroku

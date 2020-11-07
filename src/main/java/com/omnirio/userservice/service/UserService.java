@@ -43,7 +43,7 @@ public class UserService {
 	}
 
 	public User getUserByName(String name) throws Exception {
-		return userRepo.findByUserName(name);
+		return userRepo.findByUserName(name).orElse(null);
 	}
 
 	public List<User> getUserByGender(String gender) throws Exception {
@@ -62,7 +62,7 @@ public class UserService {
 		user =userRepo.save(user);
 		return user;
 	}
-
+	
 	public User Update(User user, long id) throws Exception {
 		Optional<User> result = userRepo.findById(id);
 		// boolean b =
