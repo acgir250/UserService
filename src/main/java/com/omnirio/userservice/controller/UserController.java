@@ -52,7 +52,7 @@ public class UserController {
 		String role = tokenUtil.getRoleFromToken(token.substring(7));
 		if(role.equalsIgnoreCase("customer"))
 		{
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Customer Can't be able to login");
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Customer Can't be able to access");
 		}
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> parser = mapper.readValue(user, Map.class);
@@ -76,7 +76,7 @@ public class UserController {
 		String role = tokenUtil.getRoleFromToken(token.substring(7));
 		if(role.equalsIgnoreCase("customer"))
 		{
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Customer Can't be able to login");
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Customer Can't be able to access");
 		}
 		return ResponseEntity.ok(service.getUserByName(name));
 	}
@@ -88,7 +88,7 @@ public class UserController {
 			@RequestHeader("Authorization") String token) throws Exception {
 		String role = tokenUtil.getRoleFromToken(token.substring(7));
 		if (role.equalsIgnoreCase("customer")) {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Customer Can't be able to login");
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Customer Can't be able to access");
 		}
 		User result = service.Update(user, id);
 		EntityModel<User> modelResource = EntityModel.of(result, getAllLinks(result.getUserId()));
@@ -109,7 +109,7 @@ public class UserController {
 			@RequestHeader(value = "Authorization") String token) throws Exception {
 		String role = tokenUtil.getRoleFromToken(token.substring(7));
 		if (role.equalsIgnoreCase("customer")) {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Customer Can't be able to login");
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Customer Can't be able to access");
 		}
 		List<User> user = service.getAllUser();
 		// String role = tokenUtil.getRoleFromToken(token.substring(7));
@@ -136,7 +136,7 @@ public class UserController {
 			throws Exception {
 		String role = tokenUtil.getRoleFromToken(token.substring(7));
 		if (role.equalsIgnoreCase("customer")) {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Customer Can't be able to login");
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Customer Can't be able to access");
 		}
 		service.delete(id);
 		return ResponseEntity.accepted().build();
