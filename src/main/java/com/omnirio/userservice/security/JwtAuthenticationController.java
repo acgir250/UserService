@@ -88,6 +88,7 @@ public class JwtAuthenticationController {
 			User result = service.saveUser(parser);
 			
 			final String token = jwtTokenUtil.generateToken(result.getRole(), result.getUserName());
+			response.put("userId",result.getUserId());
 			response.put("token",token);
 			String servletPath =ServletUriComponentsBuilder.fromCurrentContextPath().toUriString();
 			response.put("_links",new HashMap<String, String>().put("self", servletPath+"/api/userservice"+"/"+result.getUserId()));
